@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>352aa555-43cd-4805-8d05-796eb1dff8cf</groupId>
-	<artifactId>ion-s3-sys-api-v2-dev</artifactId>
+	<artifactId>ion-s3-exp-api</artifactId>
 	<version>1.0.0</version>
 	<packaging>mule-application</packaging>
 
