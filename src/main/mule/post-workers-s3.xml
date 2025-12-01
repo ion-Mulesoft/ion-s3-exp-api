@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:s3="http://www.mulesoft.org/schema/mule/s3"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/s3 http://www.mulesoft.org/schema/mule/s3/current/mule-s3.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="post-workers-s3Flow" doc:id="0016ea1f-9078-4b63-9abc-18c43a91cfd6" >
+		<logger level="INFO" doc:name="Logger" doc:id="b74c0241-6f3a-40ac-b574-df31fac0f822" />
+		<set-variable value='#[%dw 2.0&#10;output application/json&#10;---&#10;(payload.workerFirstName) ++ " " ++  now() ++ ".csv"]' doc:name="Set Variable" doc:id="10b93f5d-e4d5-4a21-beec-93a92fac3aa1" variableName="fileName"/>
+		<set-payload value="#[%dw 2.0&#10;output application/csv&#10;---&#10;payload]" doc:name="Set Payload" doc:id="f5e4ea9d-ed45-4ea9-99bb-5da6ed01c817" />
+		<s3:put-object doc:name="Put Object" doc:id="669bd231-f78b-460e-8b30-cb9f8b9b8cfe" key="#[vars.fileName as String]" bucketName="#[p('s3.bucketName')]" config-ref="Amazon_S3_Configuration"/>
+		<set-payload value='#[%dw 2.0&#10;output application/json&#10;---&#10;(vars.fileName) ++ " " ++  now() ++ ".csv successfully updated to S3"]' doc:name="Set Payload" doc:id="f9e48afa-77b4-4cef-ac9c-fee911b140d4" />
+	</flow>
+</mule>

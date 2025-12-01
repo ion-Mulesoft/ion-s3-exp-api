@@ -1,0 +1,50 @@
+#%RAML 1.0
+title: ion-s3-sys-api
+description: this exp api intracts with salesforce and gets worker details which should be sent to ion-worker-prc-api
+
+baseUri: https://npapi.ion.com/v1/ion-salesforce-exp-api
+protocols:
+  - HTTP
+  - HTTPS
+
+uses:
+  globalCommonLib: exchange_modules/352aa555-43cd-4805-8d05-796eb1dff8cf/global-common-lib/1.0.0/global-common-lib.raml
+  workerLib: exchange_modules/352aa555-43cd-4805-8d05-796eb1dff8cf/workerslibrary/1.0.1/workerslibrary.raml
+
+securedBy:
+  - globalCommonLib.ionClientIdEnforcement
+
+/ping:
+  is: globalCommonLib.commonErrorResponses
+  type: 
+    globalCommonLib.pingHealthChecktypes:
+      pingorhealthcheckEXample: !include examples/pingExample.raml
+
+/healthCheck:
+  is: globalCommonLib.commonErrorResponses
+  type:
+    globalCommonLib.pingHealthChecktypes:
+      pingorhealthcheckEXample: !include examples/healthCheckExample.raml
+
+/workers:
+   is:
+     - globalCommonLib.commonErrorResponses
+     - globalCommonLib.commonHeaders
+   post:
+     body:
+       application/json:
+         type: workerLib.workerRequest 
+     responses:
+       201:
+         body:
+           application/json:
+             type: workerLib.workersResponse
+   get:
+     queryParameters:
+       fileName:
+         type: string
+     responses:
+       200:
+         body:
+           application/json:
+             type: workerLib.getWorkerResponse

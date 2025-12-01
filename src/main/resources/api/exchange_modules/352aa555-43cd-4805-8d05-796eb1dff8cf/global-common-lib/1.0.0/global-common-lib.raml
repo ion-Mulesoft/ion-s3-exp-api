@@ -1,0 +1,13 @@
+#%RAML 1.0 Library
+usage: this library provides all common functionalities ustilized for every API in ION's orginization
+
+securitySchemes:
+  ionClientIdEnforcement:  !include  securitySchemas/ionClientIdEnforcementSecurityScheme.raml
+
+traits:
+  commonHeaders: !include traits/commonheaderstrait.raml
+  commonErrorResponses:  !include traits/commonErrorResponsestrait.raml
+
+resourceTypes:
+  pingHealthChecktypes:  !include resourceTypes/pingandhealthCheckresourceTypes.raml
+

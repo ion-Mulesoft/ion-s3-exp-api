@@ -1,0 +1,36 @@
+#%RAML 1.0 Trait
+description: "all the common error responses like 400,405,404,415,500 ar described in single trait to reuse for all endpoints"
+
+responses:
+  400:
+    body:
+      application/json:
+        type: object
+        example: { “ message” :  “bad request” } 
+  401:
+    body:
+      application/json:
+        type: object
+        example:  { “ message” :  “unauthorized” }
+  500:
+    body:
+      application/json:
+        type: object
+        example:  { “ message” :  "internal server error" }
+  404:
+    body:
+      application/json:
+        type: object
+        example:   { “ message” :  “resource not found” }
+  405:
+    body:
+      application/json:
+        type: object
+        example:   { “ message” :  “Method Not Allowed” }  
+  415:
+    body:
+      application/json:
+        type: object
+        example:    { “ message” :  “unsupported media type” }
+  
+          

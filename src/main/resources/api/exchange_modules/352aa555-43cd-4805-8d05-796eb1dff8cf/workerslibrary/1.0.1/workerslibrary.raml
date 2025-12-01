@@ -1,0 +1,135 @@
+#%RAML 1.0 Library
+usage: "this library will describe both request and response bodies as they are common for all the 3 apis in worker project"
+
+types:
+  workerRequest:
+    type: object
+    properties:
+      workerFirstName:
+        type: string
+        description: firstName of worker usually it should actual name
+        example: Hari
+      workerLastName: 
+        type: string
+        required: false
+        description: lastName of worker usually it should Surname
+        example: Nadimpalli
+      workerEmailAddress:
+        type: string
+        description: organization email address
+        pattern: ^[A-Za-z0-9._%+-]+@ion\.com$
+        example: hari.nadimpalli@ion.com
+      workerPhoneNumber: 
+        type: string
+        required: false
+        description: phone Numer that can be also personal number also
+        example: '9966494565'
+        maxLength: 10
+      workerAge:
+        type: number
+        description: age of worker
+        example: 25
+      workerId: 
+        type: number
+        description: organization assigned unique Id 
+        example: 25156481
+      workerStatus: 
+        type: boolean
+        description: organization assigned unique Id 
+        example: true
+      workerManager: 
+        type: string
+        description: reporting manager name assigned to worker
+        example: bryan stockwell
+      workerManagerEmailAddress:
+        type: string
+        required: false
+        description: reporting manager email address assigned to worker
+        example: bryan_stockwell1@ion.com
+        pattern: ^[A-Za-z0-9._%+-]+@ion\.com$
+      workerManagerPhoneNumber:
+        type: string
+        required: false
+        description: reporting manager email address assigned to worker
+        example: "8528529637"
+        maxLength: 10
+
+  workersResponse:
+    type: object
+    properties:
+      message:
+        type: string
+        description: status of file processed to S3 
+        example: "Hari2025-09-05T18:43:20.348+05:30.csv successfully updated to S3"
+
+  getWorkerResponse:
+    type: object
+    properties:
+      workerFirstName:
+        type: string
+        description: firstName of worker usually it should actual name
+        example: Hari
+      workerLastName: 
+        type: string
+        required: false
+        description: lastName of worker usually it should Surname
+        example: Nadimpalli
+      workerEmailAddress:
+        type: string
+        description: organization email address
+        pattern: ^[A-Za-z0-9._%+-]+@ion\.com$
+        example: hari.nadimpalli@ion.com
+      workerPhoneNumber: 
+        type: string
+        required: false
+        description: phone Numer that can be also personal number also
+        example: '9966494565'
+        maxLength: 10
+      workerAge:
+        type: number
+        description: age of worker
+        example: 25
+      workerId: 
+        type: number
+        description: organization assigned unique Id 
+        example: 25156481
+      workerStatus: 
+        type: boolean
+        description: organization assigned unique Id 
+        example: true
+      workerManager: 
+        type: string
+        description: reporting manager name assigned to worker
+        example: bryan stockwell
+      workerManagerEmailAddress:
+        type: string
+        required: false
+        description: reporting manager email address assigned to worker
+        example: bryan_stockwell1@ion.com
+        pattern: ^[A-Za-z0-9._%+-]+@ion\.com$
+      workerManagerPhoneNumber:
+        type: string
+        required: false
+        description: reporting manager email address assigned to worker
+        example: "8528529637"
+        maxLength: 10
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+
+
+      

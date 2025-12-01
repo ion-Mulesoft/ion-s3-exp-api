@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:secure-properties="http://www.mulesoft.org/schema/mule/secure-properties" xmlns:s3="http://www.mulesoft.org/schema/mule/s3"
+	xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd
+http://www.mulesoft.org/schema/mule/s3 http://www.mulesoft.org/schema/mule/s3/current/mule-s3.xsd
+http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="1cc86d17-c6e6-4764-863d-1c2d23453f88" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<apikit:config outboundHeadersMapName="outboundHeadersMapName" httpStatusVarName="httpStatus" doc:name="Router" doc:id="36f32dab-b8ac-4e92-9338-78166f0eb31f" name="Router" api="api\ion-s3-sys-api.raml" />
+	<configuration-properties doc:name="Configuration properties" doc:id="462bc9fd-9edf-4e67-9cf0-73fc8a6060cf" file="dev.yaml" />
+	<secure-properties:config name="Secure_Properties_Config" doc:name="Secure Properties Config" doc:id="88a039fc-45ef-4313-80e5-8b6c1ddb49b6" file="dev-secure.yaml" key="MuleIon123456789" encoding="UTF8"/>
+	<s3:config name="Amazon_S3_Configuration" doc:name="Amazon S3 Configuration" doc:id="a57d09d9-e006-4de3-abf2-dac42700b2ca" >
+		<s3:connection accessKey="#[p('secure::s3.accessKey')]" secretKey="#[p('secure::s3.secretKey')]" region="us-east-2" />
+	</s3:config>
+</mule>
+	

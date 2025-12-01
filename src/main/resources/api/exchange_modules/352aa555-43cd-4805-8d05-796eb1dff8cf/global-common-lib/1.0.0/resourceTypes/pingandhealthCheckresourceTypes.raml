@@ -1,0 +1,9 @@
+#%RAML 1.0 ResourceType
+description: "this resource type defines a get method to reuse for both /ping and /healthCheck"
+
+get:
+  responses:
+    200:
+      body:
+        application/json:
+          example: <<pingorhealthcheckEXample>>
